@@ -159,13 +159,29 @@ def lowest_rates(request):
         except OverriddenRoomRate.DoesNotExist:
             overridden_rate = room_rate.default_rate
 
-        applicable_discounts = DiscountRoomRate.objects.filter(room_rate=room_rate).values_list('discount__discount_value', flat=True)
-        if applicable_discounts:
-            highest_discount = max(applicable_discounts)
-        else:
-            highest_discount = 0
-        
-        final_rate = overridden_rate - highest_discount
-        rates.append({'date': date, 'rate': final_rate})
+        # Fetch applicable discounts
+        applicable_discounts = DiscountRoomRate.objects.filter(room_rate=room_rate).values(
+            'discount__discount_value', 'discount__discount_type'
+        )
+
+        highest_fixed_discount = 0
+        highest_percentage_discount = 0
+
+        for discount in applicable_discounts:
+            if discount['discount__discount_type'] == Discount.FIXED:
+                if discount['discount__discount_value'] > highest_fixed_discount:
+                    highest_fixed_discount = discount['discount__discount_value']
+            elif discount['discount__discount_type'] == Discount.PERCENTAGE:
+                if discount['discount__discount_value'] > highest_percentage_discount:
+                    highest_percentage_discount = discount['discount__discount_value']
+
+        # Apply the highest percentage discount first, then the highest fixed discount
+        discounted_rate = overridden_rate
+        if highest_percentage_discount > 0:
+            discounted_rate -= (discounted_rate * highest_percentage_discount / 100)
+        if highest_fixed_discount > 0:
+            discounted_rate -= highest_fixed_discount
+
+        rates.append({'date': date.strftime('%Y-%m-%d'), 'rate': discounted_rate})
     
     return Response(rates)
