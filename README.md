@@ -40,8 +40,8 @@ This is a Django project for managing room rates and discounts.
     ```
 
 6. Access the API documentation:
-    - Swagger UI: `http://127.0.0.1:8000/swagger/`
-    - ReDoc: `http://127.0.0.1:8000/redoc/`
+    - Swagger UI: `http://127.0.0.1:8000/api/swagger/`
+    - ReDoc: `http://127.0.0.1:8000/api/redoc/`
 
 ## API Endpoints
 
