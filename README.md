@@ -14,7 +14,7 @@ This is a Django project for managing room rates and discounts.
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/Rammechh/RammechhRoom_Rate_management.git
+    git clone -b master https://github.com/Rammechh/RammechhRoom_Rate_management.git
     cd RammechhRoom_Rate_management
     ```
 
