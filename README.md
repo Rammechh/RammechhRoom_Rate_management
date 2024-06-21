@@ -70,3 +70,4 @@ This is a Django project for managing room rates and discounts.
 
 - `GET /api/lowest-rates/`: Retrieve the lowest rates for a given room within a date range
 - `Ex: http://127.0.0.1:8000/api/lowest-rates/?room_id=1&start_date=2024-07-01&end_date=2024-07-10
+- `Ex: http://127.0.0.1:8000/api/lowest-rates/?room_id=2&start_date=2024-07-01&end_date=2024-07-10
