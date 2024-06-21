@@ -8,7 +8,6 @@ This is a Django project for managing room rates and discounts.
 ### Prerequisites
 - Python 3.x
 - Django
-- pip
 
 ### Installation
 
