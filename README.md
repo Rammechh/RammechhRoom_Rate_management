@@ -15,7 +15,7 @@ This is a Django project for managing room rates and discounts.
 1. Clone the repository:
     ```sh
     git clone https://github.com/Rammechh/RammechhRoom_Rate_management.git
-    cd YOUR_REPOSITORY_NAME
+    cd RammechhRoom_Rate_management
     ```
 
 2. Create and activate a virtual environment:
